@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RootNamespace>AgenticWorkflow.Cli</RootNamespace>
+    <!-- The product executable is `aw` (aw.exe on Windows). -->
+    <AssemblyName>aw</AssemblyName>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <!--
+    The composition root of the product: every adapter together, the way a host wires them. Nothing references this project
+    except tests, so the dependency direction stays Core <- Application <- adapters <- Cli.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\AgenticWorkflow.Application\AgenticWorkflow.Application.csproj" />
+    <ProjectReference Include="..\AgenticWorkflow.Core\AgenticWorkflow.Core.csproj" />
+    <ProjectReference Include="..\AgenticWorkflow.Execution.Local\AgenticWorkflow.Execution.Local.csproj" />
+    <ProjectReference Include="..\AgenticWorkflow.Persistence.Sqlite\AgenticWorkflow.Persistence.Sqlite.csproj" />
+    <ProjectReference Include="..\AgenticWorkflow.Runtime.Herdr\AgenticWorkflow.Runtime.Herdr.csproj" />
+  </ItemGroup>
+
+  <!--
+    The Claude evidence hook is a separate lean executable (Claude Code starts it once per observed tool event), shipped NEXT TO
+    aw.exe. The CLI finds it relative to its own install directory (AppContext.BaseDirectory), never in a source tree.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\AgenticWorkflow.ClaudeEvidenceHook\AgenticWorkflow.ClaudeEvidenceHook.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AgenticWorkflow.Cli.Tests" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <!-- The composition root of the direct path: every adapter together, the way a real host would wire them. -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AgenticWorkflow.Application\AgenticWorkflow.Application.csproj" />
+    <ProjectReference Include="..\..\src\AgenticWorkflow.Core\AgenticWorkflow.Core.csproj" />
+    <ProjectReference Include="..\..\src\AgenticWorkflow.Execution.Local\AgenticWorkflow.Execution.Local.csproj" />
+    <ProjectReference Include="..\..\src\AgenticWorkflow.Persistence.Sqlite\AgenticWorkflow.Persistence.Sqlite.csproj" />
+    <ProjectReference Include="..\..\src\AgenticWorkflow.Runtime.Herdr\AgenticWorkflow.Runtime.Herdr.csproj" />
+  </ItemGroup>
+
+  <!-- Built so the live tests can start the real hook executable; it is not a code dependency of the tests. -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AgenticWorkflow.ClaudeEvidenceHook\AgenticWorkflow.ClaudeEvidenceHook.csproj" ReferenceOutputAssembly="false" />
+    <!-- Built so the live human-supervision test can drive the real aw.exe. -->
+    <ProjectReference Include="..\..\src\AgenticWorkflow.Cli\AgenticWorkflow.Cli.csproj" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+</Project>

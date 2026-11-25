@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "role": "root",
+  "profile": "claude-main",
+  "reviewerProfile": "pi-review",
+  "proverProfile": "claude-review",
+  "profiles": {
+    "claude-main": { "harness": "claude-code", "model": "opus", "reasoning": "high", "description": "implementer" },
+    "claude-review": { "harness": "claude-code", "model": "sonnet", "reasoning": "low", "description": "read-only reviewer / prover" },
+    "pi-review": { "harness": "pi", "description": "Pi, using its own native default model and thinking level" }
+  },
+  "toolchain": "dotnet",
+  "acceptance": "human",
+  "maxTurns": 3,
+  "verification": [
+    { "id": "build", "executable": "dotnet", "arguments": ["build", "--nologo"], "timeoutSeconds": 600 },
+    { "id": "tests", "executable": "dotnet", "arguments": ["test", "--nologo", "--no-build"], "timeoutSeconds": 900 }
+  ],
+  "scope": {
+    "writable": ["src/**", "tests/**"],
+    "protected": [".git/**", "Directory.Build.props", "global.json", "AGENTS.md", "CLAUDE.md"]
+  },
+  "allowCommands": [],
+  "operatingNotes": "Follow the existing code style. Do not add dependencies."
+}

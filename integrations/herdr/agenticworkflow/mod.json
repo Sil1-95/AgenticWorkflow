@@ -1,0 +1,13 @@
+{
+  "place": "none",
+  "title": "AgenticWorkflow",
+  "overlay": { "width": 1040, "height": 760 },
+  "palette": [
+    {
+      "title": "Open AgenticWorkflow",
+      "command": "tab.new",
+      "args": { "name": "AgenticWorkflow", "mod": "agenticworkflow" },
+      "words": "agenticworkflow workflow aw cockpit"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "agenticworkflow-herdr-cockpit",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "description": "The AgenticWorkflow cockpit: a Herdr app mod. Pure logic lives in lib/ and is unit-tested with node:test; main.js is the only file that touches Herdr.",
+  "scripts": {
+    "test": "node --test"
+  }
+}

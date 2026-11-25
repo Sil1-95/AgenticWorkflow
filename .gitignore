@@ -1,0 +1,31 @@
+bin/
+obj/
+*.user
+.vs/
+.idea/
+TestResults/
+*.log
+*.tmp
+.env
+.claude/settings.local.json
+
+# SQLite databases and their WAL/shared-memory companions
+*.db
+*.sqlite
+*.sqlite3
+*.db-wal
+*.db-shm
+*-wal
+*-shm
+
+# The adapter project directory ends in ".Sqlite", which the *.sqlite pattern would match on case-insensitive file systems.
+!/src/AgenticWorkflow.Persistence.Sqlite/
+
+# Node and editor/OS leftovers
+node_modules/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Release builds (scripts/package.ps1)
+artifacts/

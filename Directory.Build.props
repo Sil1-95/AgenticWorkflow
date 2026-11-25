@@ -1,0 +1,13 @@
+<Project>
+
+  <!--
+    The one place the product's identity lives. The version `aw` reports, the controller, the evidence hook, the package name and the cockpit's version stamp all derive from this
+    <Version>; nothing else carries an independently maintained number.
+  -->
+  <PropertyGroup>
+    <Version>0.1.0</Version>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+  </PropertyGroup>
+
+</Project>
